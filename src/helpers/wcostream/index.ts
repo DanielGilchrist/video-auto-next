@@ -9,7 +9,7 @@ function findVideoElement (): HTMLVideoElement | null | undefined {
   return videoFrame?.contentDocument?.querySelector<HTMLVideoElement>("video#video-js_html5_api")
 }
 
-function withEventListener(video: HTMLVideoElement , callback: () => void): void {
+function withNextVideoEventListener(video: HTMLVideoElement , callback: () => void): void {
   const nextLink = findNextLink()
 
   callback()
@@ -17,7 +17,7 @@ function withEventListener(video: HTMLVideoElement , callback: () => void): void
   if (nextLink) {
     video.addEventListener('ended', () => {
       window.location.href = nextLink.href
-    }, false);
+    }, false)
   }
 }
 
@@ -25,7 +25,7 @@ export function playVideoAndSetListener () {
   const video = findVideoElement()
   if (video == null) return
 
-  withEventListener(video, () => {
+  withNextVideoEventListener(video, () => {
     video.play().then(() => video.requestFullscreen())
   })
 }

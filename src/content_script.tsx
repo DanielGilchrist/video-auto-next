@@ -1,9 +1,17 @@
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  if (msg.color) {
-    console.log("Receive color = " + msg.color);
-    document.body.style.backgroundColor = msg.color;
-    sendResponse("Change color to " + msg.color);
-  } else {
-    sendResponse("Color message is none.");
-  }
-});
+import { playVideoAndSetListener } from "./helpers/wcostream"
+
+window.onload = () => {
+  playVideoAndSetListener()
+
+  // const mutationObserver = new MutationObserver((mutations) => {
+  //   mutations.forEach((mutation) => {
+  //   })
+  // })
+
+  // mutationObserver.observe(document.body, {
+  //   attributes: true,
+  //   characterData: true,
+  //   childList: true,
+  //   subtree: true,
+  // })
+}
